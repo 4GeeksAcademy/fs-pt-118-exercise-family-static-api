@@ -6,6 +6,9 @@ from flask import Flask, request, jsonify, url_for
 from flask_cors import CORS
 from utils import APIException, generate_sitemap
 from datastructures import FamilyStructure
+from ejemploPerros import Perros #importo la clase 
+from ejemploHerencia import Animal, Vaca, Grillo, Molusco
+
 # from models import Person
 
 
@@ -16,6 +19,54 @@ CORS(app)
 # Create the jackson family object
 jackson_family = FamilyStructure("Jackson")
 
+
+#creando mi perro
+pocholo = Perros('pocholo', 10, 'no')
+lula = Perros('lula', 5, 'si')
+
+print(pocholo.nombre)
+
+print(lula.nombre)
+print(pocholo._edad)
+
+print(lula._edad)
+
+pocholo.ladrar()
+lula.ladrar()
+
+print('antes de jugar', pocholo.contento)
+pocholo.jugar()
+print('despues de jugar', pocholo.contento)
+
+lula.sanar()
+
+pepito = Grillo('pepito')
+pepito.hablar()
+
+lola = Vaca('lola')
+lola.hablar()
+print(pepito.comer)
+print(lola.comer)
+
+whosThatAnimal = Animal('esperpento')
+print(whosThatAnimal.comer)
+print(whosThatAnimal.hablar())
+
+print('whosThatAnimal.alive',whosThatAnimal.alive)
+print('pepito.alive',pepito.alive)
+print('lola.alive', lola.alive)
+
+molu = Molusco('molu')
+print(molu.alive)
+print(molu.comer)
+print(molu.nombre)
+molu.hablar()
+
+molu.responder('que comes???? ')
+lola.responder('muu muu muuu muuuuuuuuuu')
+
+lola.darLeche() #funciona porque tenemos darLechge como metodo para la clase Vaca
+#molu.darleche() # el metodo darLeche es propio de la vaca, por lo que la clase molusco no puede ejecutarlo 
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
